@@ -21,7 +21,7 @@ AWS에 연동해 배포까지 진행하는 과정을 담았습니다.
 
 ## 목차
 
-1. 활용 기술 소개
+1. 개발환경
 2. 설계
    - 기능분석
    - 도메인 모델, 테이블 설계
@@ -48,9 +48,18 @@ AWS에 연동해 배포까지 진행하는 과정을 담았습니다.
 
 ---
 
-## 1. 활용기술 소개
+## 1. 개발환경
 
-
+- 운영체제: Window OS (10)
+- IDE: IntelliJ IDEA Community (2020.1.4), VS Code
+- Language: Java (jdk8)
+- Framework: SpringBoot (2.2.11 SNAPSHOT)
+- WAS: Apache Tomcat 8.5
+- Build: Gradle 6.6.1
+- DBMS: MariaDB
+- Front: Thymeleaf
+- Plugins: Lombok
+- 형상관리: Git - Git Bash, GitHub Desktop
 
 ---
 
@@ -87,11 +96,14 @@ AWS에 연동해 배포까지 진행하는 과정을 담았습니다.
 
 #### 도메인 모델, 테이블 설계
 
-![image-20200918181531891](C:\Users\aquam\AppData\Roaming\Typora\typora-user-images\image-20200918181531891.png)
+https://drive.google.com/file/d/1wt-kVGhdkoJ5Z1ddMWoAxwHYOpzumfwr/view?usp=sharing
 
 
 
+회원은 여러 게시글을 작성할 수 있다. (1대 다)
+하나의 게시글에는 여러개의 댓글이 달릴 수 있다. (1대 다)
 
 
-![image-20200918181555192](C:\Users\aquam\AppData\Roaming\Typora\typora-user-images\image-20200918181555192.png)
+
+---
 
