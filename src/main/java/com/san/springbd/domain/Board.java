@@ -44,4 +44,13 @@ public class Board {
         board.count=0;
         return board;
     }
+
+    // == 비즈니스 로직== //
+
+    /**
+     * 조회수 증가
+     */
+    public void addCount(){
+        this.count+=1;
+    }
 }
