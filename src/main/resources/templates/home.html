@@ -8,8 +8,8 @@
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader" />
     <div class="jumbotron">
-        <div>
-
+        <div th:if="${#authorization.expr('isAuthenticated()')}">
+            <a class="btn btn-lg btn-info" href="/user/posts">글쓰기</a>
         </div>
        <table>
             <thead>
@@ -22,12 +22,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                <tr th:each="boards : ${boards}">
+                    <td th:text="${boards.id}"></td>
+                    <td th:text="${boards.title}"></td>
+                    <td th:text="${boards.member.nickname}"></td>
+                    <td th:text="${boards.createDate}"></td>
+                    <td th:text="${boards.count}"></td>
                 </tr>
             </tbody>
        </table>
