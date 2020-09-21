@@ -1,5 +1,7 @@
 package com.san.springbd.config;
 
+import com.san.springbd.domain.member.AuthProvider;
+import com.san.springbd.domain.member.SessionFilter;
 import com.san.springbd.service.MemberService;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -20,6 +23,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private MemberService memberService;
+    private AuthProvider authProvider;
+    private SessionFilter sessionFilter;
 
     @Bean
     public PasswordEncoder passwordEncoder(){
@@ -33,6 +38,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected  void configure(HttpSecurity http) throws Exception{
+        http.authenticationProvider(authProvider);
+        http.addFilterAfter(sessionFilter, UsernamePasswordAuthenticationFilter.class);
+
         http.authorizeRequests()
                 .antMatchers("/user/mypage").hasRole("MEMBER")
                 .antMatchers("/**").permitAll()
