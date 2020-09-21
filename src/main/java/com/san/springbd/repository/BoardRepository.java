@@ -27,4 +27,13 @@ public class BoardRepository {
         return em.createQuery("select b from Board b order by b.createDate desc",Board.class)
                 .getResultList();
     }
+
+    /**
+     * 게시글 상세조회
+     */
+    public Board findById(Long id) {
+        return em.find(Board.class,id);
+    }
+
+
 }

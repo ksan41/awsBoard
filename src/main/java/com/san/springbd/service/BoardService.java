@@ -38,6 +38,13 @@ public class BoardService {
     }
 
     /**
+     * 게시글 상세조회
+     */
+    public Board findById(Long boardId){
+        return boardRepository.findById(boardId);
+    }
+
+    /**
      * 전체 게시글 조회
      */
     public List<Board> findBoards(){
