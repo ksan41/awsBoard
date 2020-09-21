@@ -1,5 +1,6 @@
 package com.san.springbd.service;
 
+import com.san.springbd.domain.member.CustomUserDetails;
 import com.san.springbd.domain.member.Member;
 import com.san.springbd.domain.member.MemberDto;
 import com.san.springbd.domain.member.Role;
@@ -25,6 +26,7 @@ public class MemberService implements UserDetailsService{
 
     private final MemberRepository memberRepository;
 
+
     /**
      * 회원가입
      */
@@ -46,6 +48,10 @@ public class MemberService implements UserDetailsService{
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(Role.MEMBER.getValue()));
 
-        return new User(member.getLoginId(),member.getPassword(),authorities);
+        CustomUserDetails userDetails=
+                new CustomUserDetails(member.getLoginId(),member.getPassword(),
+                                      member.getNickname(),Role.MEMBER.getValue());
+
+        return userDetails;
     }
 }
