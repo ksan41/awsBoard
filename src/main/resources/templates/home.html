@@ -23,8 +23,11 @@
             </thead>
             <tbody>
                 <tr th:each="boards : ${boards}">
+
                     <td th:text="${boards.id}"></td>
-                    <td th:text="${boards.title}"></td>
+                    <td><a href="#" th:href="@{/user/posts/{boardId} (boardId=${boards.id})}">
+                        <p th:text="${boards.title}"></a></p>
+                    </td>
                     <td th:text="${boards.member.nickname}"></td>
                     <td th:text="${boards.createDate}"></td>
                     <td th:text="${boards.count}"></td>
