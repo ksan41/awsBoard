@@ -1,5 +1,6 @@
 package com.san.springbd.domain;
 
+import com.san.springbd.domain.member.Member;
 import lombok.Getter;
 
 import javax.persistence.*;
