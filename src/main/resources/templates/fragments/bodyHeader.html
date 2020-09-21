@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <div class="header" th:fragment="bodyHeader">
-    <ul class="nav nav-pills pull-right">
-        <li><a class="btn btn-lg btn-info" href="/">로그인</a></li>
-        <li><a class="btn btn-lg btn-dark" href="/">회원가입</a></li>
-    </ul>
+        <div th:if="${#authorization.expr('isAuthenticated()')}">
+            <p th:text="${#authentication.name} + '님 환영합니다!'"></p>
+            <a class="btn btn-lg btn-info" href="/">내정보</a>
+            <a class="btn btn-lg btn-dark" th:href="@{/user/logout}">로그아웃</a>
+        </div>
+        <div th:unless="${#authorization.expr('isAuthenticated()')}">
+            <a class="btn btn-lg btn-info" th:href="@{/user/login}">로그인</a>
+            <a class="btn btn-lg btn-dark" th:href="@{/user/join}">회원가입</a>
+        </div>
+
     <a href="/"><h1 class="text-muted">놀러오세요 대나무 숲</h1></a>
 </div>
