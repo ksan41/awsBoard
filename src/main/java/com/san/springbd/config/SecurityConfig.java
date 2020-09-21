@@ -42,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilterAfter(sessionFilter, UsernamePasswordAuthenticationFilter.class);
 
         http.authorizeRequests()
-                .antMatchers("/user/mypage").hasRole("MEMBER")
+                .antMatchers("/user/mypage","/user/posts").hasRole("MEMBER")
                 .antMatchers("/**").permitAll()
                .and()
                 .formLogin()
