@@ -53,4 +53,11 @@ public class Board {
     public void addCount(){
         this.count+=1;
     }
+
+    /**
+     * 게시글 삭제처리
+     */
+    public void delete(){
+        this.status=BoardStatus.DELETE;
+    }
 }
