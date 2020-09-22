@@ -38,16 +38,36 @@ public class BoardService {
     }
 
     /**
-     * 게시글 상세조회
+     * 게시글 조회
      */
     public Board findById(Long boardId){
         return boardRepository.findById(boardId);
     }
 
     /**
+     * 게시글 상세조회(조회수 증가)
+     */
+    @Transactional
+    public Board selectBoard(Long boardId){
+        Board board = findById(boardId);
+        board.addCount();
+        return board;
+    }
+
+
+    /**
      * 전체 게시글 조회
      */
     public List<Board> findBoards(){
         return boardRepository.findAll();
+    }
+
+    /**
+     * 게시글 삭제
+     */
+    @Transactional
+    public void delete(Long boardId){
+        Board board = findById(boardId);
+        board.delete();
     }
 }
