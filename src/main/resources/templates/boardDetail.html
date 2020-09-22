@@ -15,7 +15,7 @@
                 <th>작성자</th>
                 <td th:text="${board.member.nickname}"></td>
                 <th>작성일</th>
-                <td th:text="${board.createDate}"></td>
+                <td th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd HH:mm')}"></td>
                 <th>조회수</th>
                 <td th:text="${board.count}"></td>
             </tr>
