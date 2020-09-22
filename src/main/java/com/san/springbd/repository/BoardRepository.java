@@ -24,7 +24,7 @@ public class BoardRepository {
      * 전체 게시글 조회
      */
     public List<Board> findAll(){
-        return em.createQuery("select b from Board b order by b.createDate desc",Board.class)
+        return em.createQuery("select b from Board b where b.status='VISIBLE' order by b.createDate desc",Board.class)
                 .getResultList();
     }
 
