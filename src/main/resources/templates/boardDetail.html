@@ -29,8 +29,13 @@
                 <td th:text="${board.content}" colspan="8" rowspan="10"></td>
             </tr>
         </table>
-
-
+        <div th:if="${board.member.loginId == session.user.username}">
+            <a href="#" th:href="@{/user/posts/{boardId}/update (boardId=${board.id})}" class="btn btn-lg btn-info">수정</a>
+            <form th:action="@{/user/posts/{boardId}/delete (boardId=${board.id})}" method="post">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                <button type="submit" class="btn btn-lg btn-dark">삭제</button>
+            </form>
+        </div>
     </div>
     <div th:replace="fragments/footer :: footer" />
 </div> <!-- /container -->
