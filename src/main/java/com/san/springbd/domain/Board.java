@@ -60,4 +60,13 @@ public class Board {
     public void delete(){
         this.status=BoardStatus.DELETE;
     }
+
+    /**
+     * 게시글 수정
+     */
+    public void update(String title,String content){
+        this.title=title;
+        this.content=content;
+        this.modifyDate=LocalDateTime.now();
+    }
 }

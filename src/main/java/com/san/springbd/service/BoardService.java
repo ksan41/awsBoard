@@ -70,4 +70,13 @@ public class BoardService {
         Board board = findById(boardId);
         board.delete();
     }
+
+    /**
+     * 게시글 수정
+     */
+    @Transactional
+    public void update(Long boardId,String title,String content){
+        Board board = findById(boardId);
+        board.update(title,content);
+    }
 }

@@ -62,13 +62,16 @@ public class BoardController {
         return "boardUpdateForm";
     }
 
-//    /**
-//     * 글 수정
-//     */
-//    @PostMapping("/user/posts/update")
-//    public String update(){
-//
-//    }
+    /**
+     * 글 수정
+     */
+    @PostMapping("/user/posts/{boardId}/update")
+    public String update(@PathVariable("boardId") Long boardId,
+                         @RequestParam("title") String title,
+                         @RequestParam("content") String content){
+        boardService.update(boardId,title,content);
+        return "redirect:/";
+    }
 
     /**
      * 글 삭제
