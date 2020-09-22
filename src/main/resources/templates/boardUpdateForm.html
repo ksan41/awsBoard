@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+    <title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader" />
+    <div class="jumbotron">
+        <form th:action="@{/user/posts/{boardId}/update (boardId=${board.id})}" method="post">
+            <table>
+                <tr>
+                    <th>번호</th>
+                    <td th:text="${board.id}"></td>
+                    <th>작성자</th>
+                    <td th:text="${board.member.nickname}"></td>
+                    <th>작성일</th>
+                    <td th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd HH:mm')}"></td>
+                    <th>조회수</th>
+                    <td th:text="${board.count}"></td>
+                </tr>
+            </table>
+            <br>
+            <table>
+                <tr>
+                    <th>
+                        <input type="text" name="title" id="title" th:value="${board.title}">
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        <textarea id="content" name="content" th:inline="text" cols="90" rows="15">[[*{board.content}]]</textarea>
+                    </td>
+                </tr>
+            </table>
+                <button type="submit" class="btn btn-primary">수정완료</button>
+    </form>
+            <a href="/" class="btn btn-lg btn-dark">취소</a>
+    <div th:replace="fragments/footer :: footer" />
+</div> <!-- /container -->
+</body>
+</html>
