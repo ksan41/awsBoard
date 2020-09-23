@@ -29,6 +29,8 @@ public class Board {
 
     private int count; // 조회수
 
+    private int replyCount; // 댓글 개수
+
     @Enumerated(EnumType.STRING)
     private BoardStatus status; // 게시글 상태(VISIBLE, DELETE)
 
@@ -68,5 +70,19 @@ public class Board {
         this.title=title;
         this.content=content;
         this.modifyDate=LocalDateTime.now();
+    }
+
+    /**
+     * 댓글 개수 증가
+     */
+    public void addReplyCount(){
+        this.replyCount+=1;
+    }
+
+    /**
+     * 댓글 개수 감소
+     */
+    public void subReplyCount(){
+        this.replyCount-=1;
     }
 }
