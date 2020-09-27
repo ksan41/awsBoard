@@ -1,17 +1,14 @@
 package com.san.springbd.domain;
 
 import com.san.springbd.domain.member.Member;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@ToString
 @Entity
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name="reply")
 public class Reply {
 
@@ -20,12 +17,10 @@ public class Reply {
     @Column(name="reply_id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="member_id")
-    private Long memberId;
+    private String loginId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="board_id")
+    private String nickname;
+
     private Long refBoard;
 
     private String content;
@@ -37,13 +32,16 @@ public class Reply {
     @Enumerated(EnumType.STRING)
     private BoardStatus status;
 
-    @Builder
-    public Reply(Long memberId, Long refBoard, String content,LocalDateTime createDate,
-                 BoardStatus status){
-        this.memberId=memberId;
-        this.refBoard=refBoard;
-        this.content=content;
-        this.createDate=LocalDateTime.now();
-        this.status=BoardStatus.VISIBLE;
+
+    //==생성 메소드==
+    public static Reply createReply(String loginId,String nickname, Long refBoard, String content){
+        Reply reply=new Reply();
+        reply.loginId= loginId;
+        reply.nickname=nickname;
+        reply.refBoard=refBoard;
+        reply.content=content;
+        reply.createDate=LocalDateTime.now();
+        reply.status=BoardStatus.VISIBLE;
+        return reply;
     }
 }
