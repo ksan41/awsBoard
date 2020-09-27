@@ -92,7 +92,7 @@
             }
 
             $.ajax({
-                url:'/user/reply/'+boardId,
+                url:'/user/reply/'+boardId + '/new',
                 type:'post',
                 data:{loginId:loginId,
                       content:content},
@@ -120,6 +120,7 @@
         $.ajax({
             url: "/user/reply/"+boardId,
             dataType: 'json',
+            type:'get',
             success:function(rList){
 
             var value= "";
@@ -135,7 +136,7 @@
                              if(loginId == rList[i].loginId){
                                  value += '<div class="btnArea">' +
                                                '<button class="replyUpdate" type="button" onclick="">수정</button>'+
-                                               '<button class="replyDelete" type="button" onclick="">삭제</button>' +
+                                               '<button class="replyDelete" type="button" onclick="deleteReply('+rList[i].id+');">삭제</button>' +
                                           '</div>';
                              }
                            value+= '</div>';
@@ -145,6 +146,22 @@
             },
             error:function(){
                 console.log("ajax통신 에러");
+            }
+        });
+    };
+
+    function deleteReply(replyId){
+
+        $.ajax({
+            url:'/user/reply/' +replyId + '/status',
+            type:'post',
+            success:function(reply){
+                if(reply != ""){
+                    alert("댓글이 삭제되었습니다.");
+                    getAllReplies();
+                }
+            },error:function(){
+                console.log("ajax 통신 실패");
             }
         });
     };
