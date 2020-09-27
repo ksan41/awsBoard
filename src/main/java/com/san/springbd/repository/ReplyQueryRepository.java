@@ -17,7 +17,7 @@ public class ReplyQueryRepository {
     public List<Reply> findByRefBoard(Long refBoard){
         return queryFactory.selectFrom(reply)
                 .where(reply.refBoard.eq(refBoard))
-                .orderBy(reply.createDate.desc())
+                .orderBy(reply.createDate.asc())
                 .fetch();
     }
 }
