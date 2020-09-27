@@ -23,7 +23,6 @@ public class BoardController {
     private final BoardService boardService;
     private final BoardRepository boardRepository;
     private final MemberService memberService;
-    private final ReplyQueryRepository replyQueryRepository;
 
 
     /**
@@ -32,10 +31,8 @@ public class BoardController {
     @GetMapping("/user/posts/{boardId}")
     public String getOnePost(@PathVariable("boardId") Long boardId, Model model){
         Board board = boardService.selectBoard(boardId);
-        List<Reply> replies = replyQueryRepository.findByRefBoard(boardId);
 
         model.addAttribute("board",board);
-        model.addAttribute("replies",replies);
 
         return "boardDetail";
     }
@@ -85,7 +82,6 @@ public class BoardController {
      */
     @PostMapping("/user/posts/{boardId}/delete")
     public String delete(@PathVariable("boardId") Long boardId){
-        System.out.println("게시글 번호: "+boardId);
         boardService.delete(boardId);
         return "redirect:/";
     }
