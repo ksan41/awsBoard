@@ -54,4 +54,11 @@ public class Reply {
         reply.status=BoardStatus.VISIBLE;
         return reply;
     }
+
+    //== 비즈니스 로직==
+    public void delete(){
+        this.content="삭제된 댓글입니다.";
+        this.modifyDate=LocalDateTime.now();
+        this.status=BoardStatus.DELETE;
+    }
 }
