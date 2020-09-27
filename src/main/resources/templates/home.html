@@ -9,7 +9,7 @@
     <div th:replace="fragments/bodyHeader :: bodyHeader" />
     <div class="jumbotron">
         <div th:if="${#authorization.expr('isAuthenticated()')}">
-            <a class="btn btn-lg btn-info" href="/user/posts">글쓰기</a>
+            <a class="btn btn-lg btn-info" href="/user/posts/new">글쓰기</a>
         </div>
        <table>
             <thead>
