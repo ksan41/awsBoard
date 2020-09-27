@@ -50,4 +50,12 @@ public class ReplyService {
     /**
      * 댓글 삭제
      */
+    @Transactional
+    public Reply deleteReply(Long replyId){
+        Optional<Reply> replyEntityWrapper = replyRepository.findById(replyId);
+        Reply reply = replyEntityWrapper.get();
+        reply.delete();
+
+        return reply;
+    }
 }
