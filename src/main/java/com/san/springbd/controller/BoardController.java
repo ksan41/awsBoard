@@ -40,7 +40,7 @@ public class BoardController {
     /**
      * 글 작성페이지 이동
      */
-    @GetMapping("/user/posts")
+    @GetMapping("/user/posts/new")
     public String postsForm(){
         return "postsForm";
     }
@@ -48,7 +48,7 @@ public class BoardController {
     /**
      * 글 작성
      */
-    @PostMapping("/user/posts")
+    @PostMapping("/user/posts/new")
     public String createPost(@RequestParam("loginId") String loginId,
                              @RequestParam("title") String title,
                              @RequestParam("content") String content){
