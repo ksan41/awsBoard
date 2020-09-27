@@ -97,6 +97,7 @@
                 data:{loginId:loginId,
                       content:content},
                 success: function(result){
+                    $("#content").val("");
                     if(result==1){
                         getAllReplies();
                     }
