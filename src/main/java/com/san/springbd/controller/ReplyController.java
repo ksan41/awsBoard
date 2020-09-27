@@ -3,6 +3,7 @@ package com.san.springbd.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.san.springbd.domain.Board;
+import com.san.springbd.domain.Reply;
 import com.san.springbd.repository.BoardRepository;
 import com.san.springbd.repository.ReplyQueryRepository;
 import com.san.springbd.service.ReplyService;
@@ -44,7 +45,7 @@ public class ReplyController {
      * 댓글 작성
       */
     @ResponseBody
-    @PostMapping("/user/reply/{boardId}")
+    @PostMapping("/user/reply/{boardId}/new")
     public int createReply(@PathVariable("boardId") Long boardId,
                            String loginId, String content){
         int result = replyService.createReply(boardId,loginId,content);
@@ -56,7 +57,24 @@ public class ReplyController {
      * 댓글 수정
      */
 
+
     /**
      * 댓글 삭제
      */
+    @ResponseBody
+    @PostMapping("/user/reply/{replyId}/status")
+    public String deleteReply(@PathVariable("replyId") Long replyId){
+        Reply reply = replyService.deleteReply(replyId);
+
+        String result = "";
+        ObjectMapper mapper = new ObjectMapper();
+
+        try {
+            result =  mapper.writeValueAsString(reply);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
 }
