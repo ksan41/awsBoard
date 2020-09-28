@@ -56,7 +56,14 @@ public class ReplyController {
     /**
      * 댓글 수정
      */
+    @ResponseBody
+    @PostMapping("/user/reply/{replyId}")
+    public int updateReply(@PathVariable("replyId") Long replyId,String content){
+        int result=0;
+        result = replyService.update(replyId,content);
 
+        return result;
+    }
 
     /**
      * 댓글 삭제
