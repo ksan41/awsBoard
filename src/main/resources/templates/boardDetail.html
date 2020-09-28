@@ -133,7 +133,7 @@
                             value += '<div class="replies">' +
                                           '<p>' + rList[i].nickname + ' | ' + rList[i].createDate + '</p>' +
                                           '<div class="replyContent">' +  rList[i].content + '</div>';
-                             if(loginId == rList[i].loginId){
+                             if(loginId == rList[i].loginId && rList[i].status=='VISIBLE'){
                                  value += '<div class="btnArea">' +
                                                '<button class="replyUpdate" type="button" onclick="">수정</button>'+
                                                '<button class="replyDelete" type="button" onclick="deleteReply('+rList[i].id+');">삭제</button>' +
