@@ -46,6 +46,15 @@ public class ReplyService {
     /**
      * 댓글 수정
      */
+    @Transactional
+    public int update(Long replyId,String content){
+        Optional<Reply> replyEntityWrapper = replyRepository.findById(replyId);
+        Reply reply = replyEntityWrapper.get();
+        int result = reply.update(content);
+
+        return result;
+    }
+
 
     /**
      * 댓글 삭제
@@ -58,4 +67,5 @@ public class ReplyService {
 
         return reply;
     }
+
 }

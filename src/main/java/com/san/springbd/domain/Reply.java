@@ -61,4 +61,10 @@ public class Reply {
         this.modifyDate=LocalDateTime.now();
         this.status=BoardStatus.DELETE;
     }
+
+    public int update(String content){
+        this.content=content;
+        this.modifyDate=LocalDateTime.now();
+        return 1;
+    }
 }
