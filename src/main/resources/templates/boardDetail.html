@@ -2,7 +2,7 @@
 <!--suppress ALL -->
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: header">
-    <title>Hello</title>
+    <title>게시글상세</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
     <!-- default header name is X-CSRF-TOKEN -->
@@ -12,7 +12,7 @@
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader" />
     <div class="jumbotron">
-        <table>
+        <table class="table">
             <tr>
                 <th>번호</th>
                 <td th:text="${board.id}"></td>
@@ -25,7 +25,7 @@
             </tr>
         </table>
         <br>
-        <table>
+        <table class="table">
             <tr>
                 <th th:text="${board.title}" colspan="8"></th>
             </tr>
@@ -35,7 +35,7 @@
         </table>
         <div th:if="${board.member.loginId == session.user.username}">
             <a href="#" th:href="@{/user/posts/{boardId}/update (boardId=${board.id})}" class="btn btn-lg btn-info">수정</a>
-            <form th:action="@{/user/posts/{boardId}/delete (boardId=${board.id})}" method="post">
+            <form th:action="@{/user/posts/{boardId}/delete (boardId=${board.id})}" method="post" style="display: contents;">
                 <button type="submit" class="btn btn-lg btn-dark">삭제</button>
             </form>
         </div>
@@ -113,20 +113,8 @@
 
         });
 
-        $(".replyUpdate").click(function(){
-            console.log("클릭");
-            var index = $(this).parent().index();
-            var replyId = $(".replyId").eq(index).val();
-            var content = $(".replyContent").eq(index).val();
-
-            var value='<textarea id="contentUp" name="contentUp" th:inline="text" cols="70" rows="2"'+
-                       ' style="resize:none;">' +content+'</textarea>'+
-                       '<button type="button" onclick="updateReply('+replyId+');">수정</button>'+
-                       '<button class="replyDelete" type="button" onclick="getAllReplies()">취소</button>';
-
-            $(".replies").eq(index).html(value);
-        });
     });
+
 
     function getAllReplies(){
         var boardId = $("#boardId").val();
@@ -182,18 +170,21 @@
         });
     };
 
-    $(document).on("click",".replyUpdate",function(){
-            var index = $(this).parent().parent().index();
+     $(document).on("click",".replyUpdate",function(){
+           var index = $(".replyUpdate").index(this);
+            var indexC = $(".replies").index($(this).parent().parent());
+
             var replyId = $(".replyId").eq(index).val();
-            var content = $(".replyContent").eq(index).text();
+            var content = $(".replyContent").eq(indexC).text();
 
             var value='<textarea id="contentUp" name="contentUp" th:inline="text" cols="70" rows="2"'+
                        ' style="resize:none;">' +content+'</textarea>'+
                        '<button type="button" onclick="updateReply('+replyId+');">수정</button>'+
                        '<button class="replyDelete" type="button" onclick="getAllReplies()">취소</button>';
 
-            $(".replies").eq(index).html(value);
+            $(".replies").eq(indexC).html(value);
     });
+
 
     function updateReply(replyId){
         var content = $("#contentUp").val();
