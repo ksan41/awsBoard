@@ -32,9 +32,15 @@ public class MemberController {
      * 회원가입
      */
     @PostMapping("/user/join")
-    public String join(MemberDto memberDto){
-        memberService.join(memberDto);
-        return "redirect:/user/login";
+    public String join(MemberDto memberDto,Model model){
+        Long result = memberService.join(memberDto);
+
+        if(result!=0l){ // 정상적으로 가입 되었을 경우
+            return "redirect:/user/login";
+        }else{ // 중복아이디 있을경우
+            model.addAttribute("message","이미 존재하는 아이디입니다.");
+            return "/joinForm";
+        }
     }
 
     /**
