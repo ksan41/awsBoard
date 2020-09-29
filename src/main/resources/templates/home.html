@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: header">
-    <title>Hello</title>
+    <title>Home</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
@@ -9,9 +9,9 @@
     <div th:replace="fragments/bodyHeader :: bodyHeader" />
     <div class="jumbotron">
         <div th:if="${#authorization.expr('isAuthenticated()')}">
-            <a class="btn btn-lg btn-info" href="/user/posts/new">글쓰기</a>
+            <a class="btn btn-lg btn-info" href="/user/posts/new" style="margin-left: 500px;margin-bottom: 15px;">글쓰기</a>
         </div>
-       <table>
+       <table class="table">
             <thead>
                 <tr>
                     <th>번호</th>
@@ -26,7 +26,7 @@
 
                     <td th:text="${boards.id}"></td>
                     <td><a href="#" th:href="@{/user/posts/{boardId} (boardId=${boards.id})}">
-                        <p th:text="${boards.title}"></a></p>
+                        <p th:text="${boards.title}+'['+${boards.replyCount}+']'"></a></p>
                     </td>
                     <td th:text="${boards.member.nickname}"></td>
                     <td th:text="${#temporals.format(boards.createDate, 'yyyy-MM-dd HH:mm')}"></td>

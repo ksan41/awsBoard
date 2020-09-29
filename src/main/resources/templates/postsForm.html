@@ -1,15 +1,16 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: header">
-    <title>Hello</title>
+    <title>게시글작성</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader" />
+    <link href="/css/postsForm.css" type="text/css" rel="stylesheet">
     <div class="jumbotron">
         <form role="form" th:action="@{/user/posts/new}" method="post">
-            <table>
+            <table class="table">
                 <tr>
                     <th>작성자</th>
                     <input type="hidden" id="loginId" name="loginId" th:value="${session.user.username}">

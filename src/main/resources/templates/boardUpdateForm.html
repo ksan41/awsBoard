@@ -1,15 +1,16 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: header">
-    <title>Hello</title>
+    <title>게시글수정</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader" />
+    <link href="/css/postsForm.css" type="text/css" rel="stylesheet">
     <div class="jumbotron">
         <form th:action="@{/user/posts/{boardId}/update (boardId=${board.id})}" method="post">
-            <table>
+            <table class="table">
                 <tr>
                     <th>번호</th>
                     <td th:text="${board.id}"></td>
@@ -24,19 +25,21 @@
             <br>
             <table>
                 <tr>
+                    <th>제목</th>
                     <th>
                         <input type="text" name="title" id="title" th:value="${board.title}">
                     </th>
                 </tr>
+                <tr></tr>
                 <tr>
-                    <td>
+                    <td colspan="2">
                         <textarea id="content" name="content" th:inline="text" cols="90" rows="15">[[*{board.content}]]</textarea>
                     </td>
                 </tr>
             </table>
                 <button type="submit" class="btn btn-primary">수정완료</button>
+                <button type="button" class="btn btn-lg btn-dark" onclick="location.href='/';">취소</button>
     </form>
-            <a href="/" class="btn btn-lg btn-dark">취소</a>
     <div th:replace="fragments/footer :: footer" />
 </div> <!-- /container -->
 </body>
