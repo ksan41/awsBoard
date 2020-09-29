@@ -8,10 +8,11 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
+@Table(name="board")
 public class Board {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="board_id")
     private Long id;
 
