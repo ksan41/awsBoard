@@ -8,7 +8,6 @@ import com.san.springbd.repository.MemberRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -22,6 +21,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
+@Transactional(readOnly = true)
 public class MemberService implements UserDetailsService{
 
     private final MemberRepository memberRepository;
@@ -53,5 +53,20 @@ public class MemberService implements UserDetailsService{
                                       member.getNickname(),Role.MEMBER.getValue());
 
         return userDetails;
+    }
+
+    @Transactional
+    public void updateInfo(String loginId,String password,String nickname){
+        Optional<Member> userEntityWrapper = memberRepository.findByLoginId(loginId);
+        Member member = userEntityWrapper.get();
+
+        if(password!=""){
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            member.setPassword(passwordEncoder.encode(password));
+        }
+
+        if(nickname!=""){
+            member.setNickname(nickname);
+        }
     }
 }

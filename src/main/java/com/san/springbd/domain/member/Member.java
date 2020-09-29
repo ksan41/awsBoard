@@ -36,4 +36,12 @@ public class Member {
         this.nickname=nickname;
         this.password=password;
     }
+
+    public void setPassword(String password){
+        this.password=password;
+    }
+
+    public void setNickname(String nickname){
+        this.nickname=nickname;
+    }
 }
