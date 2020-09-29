@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/bootstrap.min.css" integrity="sha384-
+ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+    <link href="/css/jumbotron-narrow.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>마이페이지</title>
+</head>
+<body>
+<div class="container">
+    <a href="/">Home</a>
+    <div class="jumbotron">
+        <h1>내정보</h1>
+        <input type="hidden" id="oldNick" th:value="${member.nickname}">
+        <form th:action="@{/user/mypage/{loginId} (loginId=${member.loginId})}" method="post">
+            <table class="table">
+                <tr>
+                    <th>
+                        <label th:for="loginId">아이디</label>
+                    </th>
+                    <th th:text="${member.loginId}"></th>
+                </tr>
+                <tr>
+                    <th>
+                        <label th:for="password">비밀번호</label>
+                    </th>
+                    <td id="pwArea"><button type="button" class="btn btn-warning btn-xs" onclick="changePw();">비밀번호 변경</button>
+                        <input type="hidden" id="password" name="password" class="form-control" value="">
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label th:for="nickname">닉네임</label>
+                    </th>
+                    <td id="nickArea"><button type="button" class="btn btn-warning btn-xs" onclick="changeNN();">닉네임 변경</button>
+                        <input type="hidden" id="nickname" name="nickname" class="form-control" value="">
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <button type="submit" class="btn btn-primary">수정</button>
+            <button type="button" class="btn btn-lg btn-dark" onclick="location.htef='/';">돌아가기</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    var oldNick = $("#oldNick").val();
+
+    function changePw(){
+        var value='<input type="password" id="password" name="password" class="form-control"'+
+                  ' placeholder="새 비밀번호" required>' +
+                  '<button type="button" class="btn btn-info btn-xs" onclick="cancelPw();">취소</button>';
+        $("#pwArea").html(value);
+    }
+
+    function cancelPw(){
+        var value='<button type="button" class="btn btn-warning btn-xs" onclick="changePw();">비밀번호 변경</button>';
+        $("#pwArea").html(value);
+    }
+
+    function changeNN(){
+        var value='<input type="text" id="nickname" name="nickname" class="form-control"' +
+                   ' value="'+oldNick+'" required>' +
+                   '<button type="button" class="btn btn-info btn-xs" onclick="cancelNN();">취소</button>';
+       $("#nickArea").html(value);
+    }
+
+    function cancelNN(){
+        var value= '<button type="button" class="btn btn-warning btn-xs" onclick="changeNN();">닉네임 변경</button>';
+        $("#nickArea").html(value);
+    }
+</script>
