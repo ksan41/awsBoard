@@ -46,9 +46,9 @@ public class ReplyController {
       */
     @ResponseBody
     @PostMapping("/user/reply/{boardId}/new")
-    public int createReply(@PathVariable("boardId") Long boardId,
+    public Long createReply(@PathVariable("boardId") Long boardId,
                            String loginId, String content){
-        int result = replyService.createReply(boardId,loginId,content);
+        Long result = replyService.createReply(boardId,loginId,content);
         return result;
     }
 
