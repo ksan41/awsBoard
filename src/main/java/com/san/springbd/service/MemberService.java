@@ -74,6 +74,7 @@ public class MemberService implements UserDetailsService{
         return userDetails;
     }
 
+    // 회원정보 수정
     @Transactional
     public void updateInfo(String loginId,String password,String nickname){
         Optional<Member> userEntityWrapper = memberRepository.findByLoginId(loginId);
