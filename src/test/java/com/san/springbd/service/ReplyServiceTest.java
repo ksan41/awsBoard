@@ -41,7 +41,7 @@ public class ReplyServiceTest {
         Long savedId = replyService.createReply(board.getId(),member.getLoginId(),content);
 
         // then
-        assertEquals(1,boardRepository.findById(board.getId()).getReplyCount());
+        assertEquals(1,boardRepository.findById(board.getId()).get().getReplyCount());
         assertEquals(content,replyRepository.findById(savedId).get().getContent());
     }
 
@@ -96,7 +96,7 @@ public class ReplyServiceTest {
         String title="제목입니다";
         String content="내용입니다";
         Long savedId = boardService.createPost(loginId,title,content);
-        return boardRepository.findById(savedId);
+        return boardRepository.findById(savedId).get();
     }
 
     private Reply createReply(){
