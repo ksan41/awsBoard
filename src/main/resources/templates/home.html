@@ -28,7 +28,7 @@
                     <td><a href="#" th:href="@{/user/posts/{boardId} (boardId=${boards.id})}">
                         <p th:text="${boards.title}+'['+${boards.replyCount}+']'"></a></p>
                     </td>
-                    <td th:text="${boards.member.nickname}"></td>
+                    <td th:text="${boards.nickname}"></td>
                     <td th:text="${#temporals.format(boards.createDate, 'yyyy-MM-dd HH:mm')}"></td>
                     <td th:text="${boards.count}"></td>
                 </tr>

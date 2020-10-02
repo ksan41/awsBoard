@@ -17,7 +17,7 @@
                 <th>번호</th>
                 <td th:text="${board.id}"></td>
                 <th>작성자</th>
-                <td th:text="${board.member.nickname}"></td>
+                <td th:text="${board.nickname}"></td>
                 <th>작성일</th>
                 <td th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd HH:mm')}"></td>
                 <th>조회수</th>
@@ -33,7 +33,7 @@
                 <td th:text="${board.content}" colspan="8" rowspan="10"></td>
             </tr>
         </table>
-        <div th:if="${board.member.loginId == session.user.username}">
+        <div th:if="${board.loginId == session.user.username}">
             <a href="#" th:href="@{/user/posts/{boardId}/update (boardId=${board.id})}" class="btn btn-lg btn-info">수정</a>
             <form th:action="@{/user/posts/{boardId}/delete (boardId=${board.id})}" method="post" style="display: contents;">
                 <button type="submit" class="btn btn-lg btn-dark">삭제</button>
