@@ -1,6 +1,7 @@
 package com.san.springbd.service;
 
 import com.san.springbd.domain.Board;
+import com.san.springbd.domain.BoardStatus;
 import com.san.springbd.domain.Reply;
 import com.san.springbd.domain.member.Member;
 import com.san.springbd.domain.member.MemberDto;
@@ -44,6 +45,34 @@ public class ReplyServiceTest {
         assertEquals(content,replyRepository.findById(savedId).get().getContent());
     }
 
+    @Test
+    public void 댓글수정_테스트(){
+        // given
+        Reply reply = createReply();
+        String newContent = "수정된 댓글입니다~";
+
+        // when
+        int result = replyService.update(reply.getId(),newContent);
+
+        // then
+        assertEquals(1,result);
+        assertEquals(newContent,replyRepository.findById(reply.getId()).get().getContent());
+    }
+
+    @Test
+    public void 댓글삭제_테스트(){
+        // given
+        Reply reply=createReply();
+
+        // when
+        replyService.deleteReply(reply.getId());
+
+        // then
+        assertEquals(BoardStatus.DELETE,replyRepository.findById(reply.getId()).get().getStatus());
+        assertEquals("삭제된 댓글입니다.",replyRepository.findById(reply.getId()).get().getContent());
+
+    }
+
 
     // 테스트용 Member 데이터
     private Member createMember(){
@@ -68,5 +97,13 @@ public class ReplyServiceTest {
         String content="내용입니다";
         Long savedId = boardService.createPost(loginId,title,content);
         return boardRepository.findById(savedId);
+    }
+
+    private Reply createReply(){
+        Member member = createMember();
+        Board board = createBoard();
+        String content = "댓글내용~~";
+        Long savedId = replyService.createReply(board.getId(),member.getLoginId(),content);
+        return replyRepository.findById(savedId).get();
     }
 }
