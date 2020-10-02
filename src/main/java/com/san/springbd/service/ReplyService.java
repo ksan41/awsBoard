@@ -30,7 +30,7 @@ public class ReplyService {
         Optional<Member> userEntityWrapper = memberRepository.findByLoginId(loginId);
         Member member = userEntityWrapper.get();
 
-        Board board =  boardRepository.findById(boardId);
+        Board board =  boardRepository.findById(boardId).get();
 
         Reply reply = Reply.createReply(member.getLoginId(),member.getNickname(),boardId,content);
         Long savedId = replyRepository.save(reply).getId();
