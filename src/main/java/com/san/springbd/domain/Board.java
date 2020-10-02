@@ -47,6 +47,7 @@ public class Board {
         board.status=BoardStatus.VISIBLE;
         board.createDate=LocalDateTime.now();
         board.count=0;
+        board.replyCount=0;
         return board;
     }
 
