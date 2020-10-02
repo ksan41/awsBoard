@@ -9,7 +9,7 @@ AWS에 연동해 배포까지 진행하는 과정을 담았습니다.
 > 참고 강의, 저서
 >
 > - 스프링 부트와 AWS로 혼자 구현하는 웹 서비스 - 이동욱
-> - 실전! 스프링 부트와 JPA 활용1 웹 애플리케이션 개발 - 김영한
+> - 실전! 스프링 부트와 JPA 활용1 웹 애플리케이션 개발 (인프런 강의)- 김영한
 
 
 
@@ -26,22 +26,9 @@ AWS에 연동해 배포까지 진행하는 과정을 담았습니다.
    - 기능분석
    - 도메인 모델, 테이블 설계
    - 화면 설계
-
-3. 엔티티 구현
-4. 도메인 개발
-   - 회원 도메인 개발
-   - 게시글 도메인 개발
-   - 댓글 도메인 개발
-
-5. 웹 계층 개발
-   - 홈 화면, 레이아웃
-   - 회원가입
-   - 로그인/로그아웃
-   - 회원정보 수정
-   - 게시글 등록
-   - 게시글 수정/삭제
-   - 댓글 등록
-   - 댓글 수정/삭제
+3. 기능 구현
+4. 웹 계층 개발(화면)
+5. 단위 테스트 작성
 6. AWS 연동
 
 
@@ -51,15 +38,16 @@ AWS에 연동해 배포까지 진행하는 과정을 담았습니다.
 ## 1. 개발환경
 
 - 운영체제: Window OS (10)
-- IDE: IntelliJ IDEA Community (2020.1.4), VS Code
+- IDE: IntelliJ IDEA Community (2020.1.4)
 - Language: Java (jdk8)
-- Framework: SpringBoot (2.2.11 SNAPSHOT)
+- Framework: SpringBoot (2.3.2 RELEASE)
 - WAS: Apache Tomcat 8.5
-- Build: Gradle 6.6.1
+- Build: Gradle 4.10.2
 - DBMS: MariaDB
 - Front: Thymeleaf
 - Plugins: Lombok
 - 형상관리: Git - Git Bash, GitHub Desktop
+- 단위테스트: JUnit4
 
 ---
 
@@ -68,22 +56,22 @@ AWS에 연동해 배포까지 진행하는 과정을 담았습니다.
 #### - 기능분석
 
 1. 회원기능
-    -회원가입
-    -로그인/로그아웃
-    -회원정보 수정
+   -회원가입
+   -로그인/로그아웃
+   -회원정보 수정
 
 2. 게시판
-    -게시글 조회
-    -게시글 등록
-    -게시글 수정
-    -게시글 삭제
-    -게시글 검색
-    -페이징바
+   -게시글 조회
+   -게시글 등록
+   -게시글 수정
+   -게시글 삭제
+   -게시글 검색
+   -페이징바
 
 3. 댓글
-     -댓글 등록
-     -댓글 수정
-     -댓글 삭제
+   -댓글 등록
+   -댓글 수정
+   -댓글 삭제
 
    
 
@@ -96,12 +84,26 @@ AWS에 연동해 배포까지 진행하는 과정을 담았습니다.
 
 #### 도메인 모델, 테이블 설계
 
-https://drive.google.com/file/d/1wt-kVGhdkoJ5Z1ddMWoAxwHYOpzumfwr/view?usp=sharing
-
-
+https://drive.google.com/file/d/1Op6dURYX1JgbrNHc164l-NDWLJy5yU9G/view?usp=sharing
 
 회원은 여러 게시글을 작성할 수 있다. (1대 다)
 하나의 게시글에는 여러개의 댓글이 달릴 수 있다. (1대 다)
+
+
+
+#### *도메인
+
+-회원(member)
+
+-게시글(board)
+
+-댓글(reply)
+
+#### *보조 클래스
+
+-회원권한(Role) : Enum
+
+-게시글상태(BoardStatus) : Enum // 게시글, 댓글 같이 사용
 
 
 
@@ -113,3 +115,18 @@ https://drive.google.com/file/d/1wt-kVGhdkoJ5Z1ddMWoAxwHYOpzumfwr/view?usp=shari
 
 ---
 
+
+
+# 3. 기능구현
+
+
+
+# 4. 웹 계층 개발(화면)
+
+
+
+# 5. 단위 테스트 작성
+
+
+
+# 6. AWS 연동
