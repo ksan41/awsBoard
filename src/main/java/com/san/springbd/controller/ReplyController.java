@@ -25,7 +25,7 @@ public class ReplyController {
      */
     @GetMapping(value = "/user/reply/{boardId}",produces = "application/json; charset=utf-8")
     public @ResponseBody String getAllReplies(@PathVariable("boardId") Long boardId){
-        Board board = boardRepository.findById(boardId);
+        Board board = boardRepository.findById(boardId).get();
         ObjectMapper mapper = new ObjectMapper();
 
         if(board.getReplyCount()>0){
