@@ -2,6 +2,7 @@ package com.san.springbd.service;
 
 import com.san.springbd.domain.Board;
 import com.san.springbd.domain.member.Member;
+import com.san.springbd.repository.BoardQueryRepository;
 import com.san.springbd.repository.BoardRepository;
 import com.san.springbd.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ public class BoardService {
 
     private final MemberRepository memberRepository;
     private final BoardRepository boardRepository;
+    private final BoardQueryRepository boardQueryRepository;
 
     /**
      * 글 등록
@@ -39,7 +41,7 @@ public class BoardService {
      * 게시글 조회
      */
     public Board findById(Long boardId){
-        return boardRepository.findById(boardId);
+        return boardRepository.findById(boardId).get();
     }
 
     /**
@@ -57,7 +59,7 @@ public class BoardService {
      * 전체 게시글 조회
      */
     public List<Board> findBoards(){
-        return boardRepository.findAll();
+        return boardQueryRepository.findAll();
     }
 
     /**
