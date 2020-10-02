@@ -99,9 +99,7 @@
                       content:content},
                 success: function(result){
                     $("#content").val("");
-                    if(result==1){
-                        getAllReplies();
-                    }
+                     getAllReplies();
                 },
                 error:function(request,status,error){
                     alert("code = "+ request.status + " message = " + request.responseText + " error = " + error);
