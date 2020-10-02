@@ -16,9 +16,10 @@ public class Board {
     @Column(name="board_id")
     private Long id;
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name = "member_id")
-    private Member member;
+    private String loginId;
+
+    private String nickname;
+
 
     private String title;
 
@@ -39,7 +40,8 @@ public class Board {
 
     public static Board createBoard(Member member,String title,String content){
         Board board=new Board();
-        board.member=member;
+        board.loginId=member.getLoginId();
+        board.nickname=member.getNickname();
         board.title=title;
         board.content=content;
         board.status=BoardStatus.VISIBLE;
