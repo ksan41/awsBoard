@@ -43,9 +43,9 @@ public class BoardServiceTest {
         Long savedId = boardService.createPost(loginId,title,content);
 
         // then
-        assertEquals(loginId,boardRepository.findById(savedId).getLoginId());
-        assertEquals(title,boardRepository.findById(savedId).getTitle());
-        assertEquals(content,boardRepository.findById(savedId).getContent());
+        assertEquals(loginId,boardRepository.findById(savedId).get().getLoginId());
+        assertEquals(title,boardRepository.findById(savedId).get().getTitle());
+        assertEquals(content,boardRepository.findById(savedId).get().getContent());
     }
 
 
@@ -58,7 +58,7 @@ public class BoardServiceTest {
         boardService.delete(board.getId());
 
         // then
-        assertEquals(BoardStatus.DELETE,boardRepository.findById(board.getId()).getStatus());
+        assertEquals(BoardStatus.DELETE,boardRepository.findById(board.getId()).get().getStatus());
     }
 
     @Test
@@ -73,8 +73,8 @@ public class BoardServiceTest {
         boardService.update(boardId,newTitle,newContent);
 
         // then
-        assertEquals(newTitle,boardRepository.findById(boardId).getTitle());
-        assertEquals(newContent,boardRepository.findById(boardId).getContent());
+        assertEquals(newTitle,boardRepository.findById(boardId).get().getTitle());
+        assertEquals(newContent,boardRepository.findById(boardId).get().getContent());
     }
 
     // 테스트용 Member 데이터
@@ -99,6 +99,6 @@ public class BoardServiceTest {
         String title="제목입니다";
         String content="내용입니다";
         Long savedId = boardService.createPost(loginId,title,content);
-        return boardRepository.findById(savedId);
+        return boardRepository.findById(savedId).get();
     }
 }
