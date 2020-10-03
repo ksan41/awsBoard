@@ -6,6 +6,9 @@ import com.san.springbd.repository.BoardQueryRepository;
 import com.san.springbd.repository.BoardRepository;
 import com.san.springbd.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -58,8 +61,8 @@ public class BoardService {
     /**
      * 전체 게시글 조회
      */
-    public List<Board> findBoards(){
-        return boardQueryRepository.findAll();
+    public Page<Board> findBoards(PageRequest pageRequest){
+        return boardRepository.findAll(pageRequest);
     }
 
     /**
