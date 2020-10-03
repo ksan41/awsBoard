@@ -62,7 +62,8 @@ public class BoardService {
      * 전체 게시글 조회
      */
     public Page<Board> findBoards(PageRequest pageRequest){
-        return boardRepository.findAll(pageRequest);
+
+        return boardQueryRepository.findAll(pageRequest);
     }
 
     /**
