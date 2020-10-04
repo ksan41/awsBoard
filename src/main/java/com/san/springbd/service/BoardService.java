@@ -1,6 +1,7 @@
 package com.san.springbd.service;
 
 import com.san.springbd.domain.Board;
+import com.san.springbd.domain.BoardSearch;
 import com.san.springbd.domain.member.Member;
 import com.san.springbd.repository.BoardQueryRepository;
 import com.san.springbd.repository.BoardRepository;
@@ -8,11 +9,9 @@ import com.san.springbd.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -61,9 +60,8 @@ public class BoardService {
     /**
      * 전체 게시글 조회
      */
-    public Page<Board> findBoards(PageRequest pageRequest){
-
-        return boardQueryRepository.findAll(pageRequest);
+    public Page<Board> findBoards(PageRequest pageRequest, BoardSearch boardSearch,String keyword){
+        return boardQueryRepository.findAll(pageRequest,boardSearch,keyword);
     }
 
     /**
