@@ -11,6 +11,17 @@
         <div th:if="${#authorization.expr('isAuthenticated()')}">
             <a class="btn btn-lg btn-info" href="/user/posts/new" style="margin-left: 500px;margin-bottom: 15px;">글쓰기</a>
         </div>
+
+        <form action="/" method="get">
+            <select name="boardSearch">
+                <option value="nickname">작성자</option>
+                <option value="title">제목</option>
+                <option value="content">제목+내용</option>
+            </select>
+            <input type="text" name="keyword" id="keyword">
+            <button type="submit" class="btn btn-lg btn-dark">검색</button>
+        </form>
+
        <table class="table">
             <thead>
                 <tr>
@@ -41,24 +52,24 @@
                   end=(${(boards.totalPages == 0) ? 1 : (start + (maxPage - 1) < boards.totalPages ? start + (maxPage - 1) : boards.totalPages)})" >
             <ul class="pagination justify-content-center">
                 <li class="page-item" th:if="${start > 1}">
-                    <a class="page-link" th:href="@{/?(page=0)}" th:text="'<<'"></a></li>
+                    <a class="page-link" th:href="@{/?(page=0,boardSearch=${boardSearch},keyword=${keyword})}" th:text="'<<'"></a></li>
                 </li>
 
                 <li class="page-item" th:if="${start > 1}">
-                    <a class="page-link" th:href="@{/?(page=${start - maxPage})}" th:text="'<'"></a>
+                    <a class="page-link" th:href="@{/?(page=${start - maxPage},boardSearch=${boardSearch},keyword=${keyword})}" th:text="'<'"></a>
                 </li>
 
 
                 <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${page == boards.number+1} ? 'active'">
-                    <a class="page-link" th:href="@{/?(page=${page-1})}" th:text="${page}"></a></li>
+                    <a class="page-link" th:href="@{/?(page=${page-1},boardSearch=${boardSearch},keyword=${keyword})}" th:text="${page}"></a></li>
                 </li>
 
                 <li class="page-item" th:if="${end < boards.totalPages}">
-                    <a class="page-link" th:href="@{/?(page=${start + maxPage})}" th:text="'>'"></a>
+                    <a class="page-link" th:href="@{/?(page=${start + maxPage},boardSearch=${boardSearch},keyword=${keyword})}" th:text="'>'"></a>
                 </li>
 
                 <li class="page-item" th:if="${end < boards.totalPages}">
-                    <a class="page-link" th:href="@{/?(page=${boards.totalPages-1})}" th:text="'>>'"></a></li>
+                    <a class="page-link" th:href="@{/?(page=${boards.totalPages-1},boardSearch=${boardSearch},keyword=${keyword})}" th:text="'>>'"></a></li>
                 </li>
             </ul>
 
