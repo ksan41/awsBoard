@@ -1,4 +1,4 @@
-# freeboard
+freeboard
 
 로그인, 게시글, 댓글 기능이 들어간 간단한 게시판 프로젝트 입니다.
 
@@ -70,10 +70,14 @@
 
 #### 도메인 모델, 테이블 설계
 
-https://drive.google.com/file/d/1Op6dURYX1JgbrNHc164l-NDWLJy5yU9G/view?usp=sharing
 
-회원은 여러 게시글을 작성할 수 있다. (1대 다)
-하나의 게시글에는 여러개의 댓글이 달릴 수 있다. (1대 다)
+
+<img src="https://github.com/ksan41/freeboard/blob/master/img/Untitled%20Diagram.png?raw=true" width="600px" height="550px" title="550px" alt="tables"></img><br/>
+
+
+
+> 회원은 여러 게시글을 작성할 수 있다. (1대 다)
+> 하나의 게시글에는 여러개의 댓글이 달릴 수 있다. (1대 다)
 
 
 
@@ -105,11 +109,45 @@ https://drive.google.com/file/d/1Op6dURYX1JgbrNHc164l-NDWLJy5yU9G/view?usp=shari
 
 -홈 화면
 
--로그인 페이지, 회원가입 페이지
+<img src="https://github.com/ksan41/freeboard/blob/master/img/oven/1.PNG?raw=true" width="900px" height="400px" title="550px" alt="tables"></img>
+
+​																				로그인 정보 없을 시
+
+
+
+<img src="https://github.com/ksan41/freeboard/blob/master/img/oven/2.PNG?raw=true" width="900px" height="400px" title="550px" alt="tables"></img>
+
+​																						로그인 시
+
+
+
+-회원가입 페이지
+
+<img src="https://github.com/ksan41/freeboard/blob/master/img/oven/3.PNG?raw=true" width="800px" height="400px" title="550px" alt="tables"></img>
+
+-로그인 페이지
+
+<img src="https://github.com/ksan41/freeboard/blob/master/img/oven/4.PNG?raw=true" width="750px" height="500px" title="550px" alt="tables"></img>
 
 -마이페이지
 
--게시글 작성, 수정, 상세페이지
+<img src="https://github.com/ksan41/freeboard/blob/master/img/oven/5.PNG?raw=true" width="750px" height="500px" title="550px" alt="tables"></img>
+
+​																				마이페이지 첫 화면
+
+<img src="https://github.com/ksan41/freeboard/blob/master/img/oven/6.PNG?raw=true" width="750px" height="500px" title="550px" alt="tables"></img>
+
+​																				각 변경버튼 클릭 시
+
+-게시글 상세페이지
+
+<img src="https://github.com/ksan41/freeboard/blob/master/img/oven/7.PNG?raw=true" width="750px" height="500px" title="550px" alt="tables"></img>
+
+-게시글 작성페이지, 수정페이지
+
+<img src="https://github.com/ksan41/freeboard/blob/master/img/oven/8.PNG?raw=true" width="750px" height="500px" title="550px" alt="tables"></img>
+
+​																					수정페이지
 
 총 7개 페이지로 구성
 
