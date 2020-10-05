@@ -16,10 +16,8 @@
    - 도메인 모델, 테이블 설계
    - 화면 설계
 3. 기능 구현
-4. 웹 계층 개발(화면)
+4. 웹 계층 개발
 5. 단위 테스트 작성
-
-
 
 ---
 
@@ -31,7 +29,7 @@
 - Framework: SpringBoot (2.3.2 RELEASE)
 - WAS: Apache Tomcat 8.5
 - Build: Gradle 4.10.2
-- Front: Thymeleaf
+- Front: Thymeleaf, JavaScript
 - Plugins: Lombok
 - 형상관리: Git - Git Bash, GitHub Desktop
 - 단위테스트: JUnit4
@@ -119,9 +117,88 @@ https://drive.google.com/file/d/1Op6dURYX1JgbrNHc164l-NDWLJy5yU9G/view?usp=shari
 
 # 3. 기능구현
 
+### A. Member(회원) 기능 개발
+
+**SpringSecutiry 사용.
+
+-SecurityConfig
+
+  :  Service에서 비밀번호를 암호화할 수 있도록 BCryptEncoder를 Bean으로 등록했다.
+
+​     SessionFilter를 등록해 front에서 사용자 정보를 "user"로 접근할 수 있도록 했다.
+
+​     사용자의 권한에 따라 url 접근 제한을 두었다.
+
+​     로그인, 로그아웃 설정을 해주었다.
 
 
-# 4. 웹 계층 개발(화면)
+
+- 회원가입 기능
+
+  -회원가입 시 사용할 MemberDto에 사용자로부터 아이디, 비밀번호, 닉네임을 입력받아 컨트롤러로 전달.
+
+  -서비스에서 BCryptPasswordEncoder를 통해 비밀번호를 암호화 한 뒤, 아이디 중복검사를 수행한다.
+
+   (중복 아이디가 있을 경우엔 등록처리 하지 않고 0l을 반환)
+
+- 회원정보 수정
+
+  -컨트롤러에서 사용자 정보를 받아와 서비스에 넘긴다. 비밀번호와 닉네임을 각각 선택적으로 변경할 수 있으므로, 각각 값이 있을 경우에만 변경처리 하도록 했다.
+
+
+
+---
+
+### B. Board(게시글) 도메인 개발
+
+**Querydsl 사용
+
+​	: JPARepository로 처리하기 복잡한 쿼리를 수행하기 위해 사용.
+
+​	 간단한 기능처리는 JPARepository를 사용했다.
+
+
+
+- 게시글 조회
+
+  -화면에서 선택한 boardId(식별자)를 받아와 서비스로 넘긴다.
+
+  -이때 조회수도 증가해야 하기 때문에 Board 엔티티를 조회해 온 뒤 조회수를 1 증가시키고
+
+    조회해온 Board를 반환한다.
+
+- 게시글 등록
+
+  -사용자 아이디, 제목, 내용을 컨트롤러에서 받아와 서비스에 넘겼다.
+
+  -서비스에서는 사용자 아이디로 Member 엔티티를 조회해오고, 각 정보를 담아 Board 객체를 생성 후
+
+   BoardRepository(JPA Repository) save 메소드 실행.
+
+- 게시글 수정
+
+  -boardId, 제목과 내용을 받아와 서비스에 넘긴 후, Board 엔티티 내에 작성해둔 update 메소드를 수행한다.
+
+- 게시글 삭제
+
+  -boardId를 받아와 서비스에 넘긴 후, Board 엔티티 내에 작성해둔 delete 메소드를 수행한다.
+
+  (실제로 삭제되지는 않고 boardStatus값만 'DELETE'로 변경해 화면에서 보이지 않도록 했다.)
+
+- 게시글 전체조회, 게시글 검색
+
+  -
+
+---
+
+### C. Reply(댓글) 도메인 개발
+
+- 
+
+
+
+
+# 4. 웹 계층 개발
 
 
 
@@ -135,7 +212,7 @@ JUnit4 사용
 
 
 
-- MemberServiceTest
+- MemberServiceTest (회원 기능 테스트)
 
   - 회원가입 테스트
 
@@ -153,7 +230,7 @@ JUnit4 사용
 
       비교한다.
 
-- BoardServiceTest
+- BoardServiceTest (게시판 기능 테스트)
 
   - 글 등록 테스트
 
@@ -171,7 +248,7 @@ JUnit4 사용
 
       테스트한다.
 
-- ReplyServiceTest
+- ReplyServiceTest (댓글 기능 테스트)
 
   - 댓글 작성 테스트
 
