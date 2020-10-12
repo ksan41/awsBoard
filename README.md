@@ -29,7 +29,7 @@ freeboard
 - Framework: SpringBoot (2.3.2 RELEASE)
 - WAS: Apache Tomcat 8.5
 - Build: Gradle 4.10.2
-- Front: Thymeleaf, JavaScript
+- Front: Thymeleaf, JavaScript, JQuery
 - Plugins: Lombok
 - 형상관리: Git - Git Bash, GitHub Desktop
 - 단위테스트: JUnit4
